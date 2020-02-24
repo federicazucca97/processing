@@ -11,6 +11,54 @@
         <script type="text/processing">
 
             // Write your project here
+            // Il sistema solare
+
+// L'angolo di rotazione è attorno al sole e ai pianeti
+float theta = 0;
+
+void setup() {
+  size(480, 270);
+}
+
+void draw() {
+  background(255);
+  stroke(0);
+
+  // Bisogna spostarsi al centro della finestra per disegnare il sole. 
+  translate(width/2, height/2);
+  fill(255, 165, 28);
+  ellipse(0, 0, 64, 64);
+
+  // La Terra ruota attorno al sole.
+  pushMatrix();
+  rotate(theta);
+  translate(100, 0);
+  fill(0, 119, 193);
+  ellipse(0, 0, 32, 32);
+
+  // Luna #1 ruota attorno alla terra
+  // pushMatrix() è chiamata a salvare la trasformazioe prima di disegnare la Luna #1.
+  // Grazie a questa funzione possiamo tornare alla terra prima di disegnare la Luna #2 
+  // Entrambe le lune ruotano attorno alla terra (che a sua volta ruota attorno al sole).
+  pushMatrix(); 
+  rotate(-theta*4);
+  translate(36, 0);
+  fill(202, 234, 255);
+  ellipse(0, 0, 12, 12);
+  popMatrix();
+
+  // Luna #2 ruota anche lei attorno al sole.
+  pushMatrix();
+  rotate(theta*2);
+  translate(24, 0);
+  fill(254, 238, 255);
+  ellipse(0, 0, 6, 6);
+  popMatrix();
+
+  popMatrix();
+
+  theta += 0.01;
+}
             
             // Example
             void setup() {
